@@ -2,21 +2,15 @@
 
 ## Windows
 
-### Compile Code
-* ./mvnw.cmd clean compile -e
-
-### Test Code
-* ./mvnw.cmd clean test -e
-
-### Jar Code
-* ./mvnw.cmd clean package -e
+### Compile Test Jar Code
+* ./gradlew.bat clean build
 
 ### Run Jar
-* Local:      ./mvnw.cmd spring-boot:run 
-* Background: nohup bash mvnw.cmd spring-boot:run &
+* Local:      ./gradlew.bat bootRun
+* Background: nohup bash gradlew.bat bootRun &
 
 ### Testing Application
-* Abrir navegador: http://localhost:8081/rest/mscovid/test?msg=testing
+* Abrir navegador: http://localhost:9010/rest/mscovid/test?msg=testing
 
 ## Linux
 
