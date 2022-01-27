@@ -18,6 +18,12 @@ pipeline {
                 echo 'Pulling...' + env.BRANCH_NAME
             }
         }
+
+          stage('Build3') {
+            steps {                
+                echo 'Pulling... ' + env.GIT_BRANCH
+            }
+        }
         
         stage("Pipeline"){
             steps {
