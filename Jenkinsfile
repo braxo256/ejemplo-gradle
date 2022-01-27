@@ -17,6 +17,19 @@ pipeline {
                 sh 'printenv'
             }
         }
+
+        
+        stage('Build2') {
+            steps {                
+                echo 'Pulling...' + env.BRANCH_NAME
+            }
+        }
+
+          stage('Build3') {
+            steps {                
+                echo 'Pulling... ' + env.GIT_BRANCH
+            }
+        }
          
         stage("Paso 1: Compilar"){
             steps {
