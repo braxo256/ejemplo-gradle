@@ -8,10 +8,16 @@ pipeline {
      environment {
         NEXUS_USER = credentials('nexus-user')
         NEXUS_PASS = credentials('nexus-pass')
+         DISABLE_AUTH = 'true'
+        DB_ENGINE    = 'sqlite'
     }
-
-    stages {        
-                 
+    stages {
+        stage('Build') {
+            steps {
+                sh 'printenv'
+            }
+        }
+         
         stage("Paso 1: Compilar"){
             steps {
                 script {
