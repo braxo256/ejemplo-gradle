@@ -26,6 +26,8 @@ pipeline {
                         withSonarQubeEnv('sonarqube') {
                             sh "echo 'Calling sonar by ID!'"
                             // Run Maven on a Unix agent to execute Sonar.
+                            // sh 'chmod -R 777 DevOpsUsach2020-0.0.1.jar'
+                            sh 'chmod +x gradlew'
                             sh './gradlew sonarqube -Dsonar.projectKey=ejemplo-gradle -Dsonar.java.binaries=build'
                         }
                     }
