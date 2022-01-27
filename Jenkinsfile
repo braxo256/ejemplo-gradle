@@ -3,8 +3,16 @@ pipeline {
     environment {
         NEXUS_USER         = credentials('nexus-user')
         NEXUS_PASSWORD     = credentials('nexus-pass')
+        DISABLE_AUTH = 'true'
+        DB_ENGINE    = 'sqlite'
     }
     stages {
+        stage('Build') {
+            steps {
+                sh 'printenv'
+            }
+        }
+        
         stage("Pipeline"){
             steps {
                 script{
@@ -61,8 +69,8 @@ pipeline {
                     stage("Paso 6: Levantar Artefacto Jar"){
                         sh 'nohup bash java -jar DevOpsUsach2020-0.0.1.jar & >/dev/null'
                     }
-                    stage("Paso 7: Testear Artefacto - Dormir(Esperar 20sg) "){
-                       sh "sleep 20 && curl -X GET 'http://localhost:8081/rest/mscovid/test?msg=testing'"
+                    stage("Paso 7: Testear Artefacto - Dormir(Esperar 30) "){
+                       sh "sleep 30 && curl -X GET 'http://localhost:8081/rest/mscovid/test?msg=testing'"
                     }
                 }
             }
