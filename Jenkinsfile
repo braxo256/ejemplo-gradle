@@ -9,7 +9,13 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'printenv'
+                sh 'printenv'                
+            }
+        }
+
+        stage('Build2') {
+            steps {                
+                echo 'Pulling...' + env.BRANCH_NAME
             }
         }
         
