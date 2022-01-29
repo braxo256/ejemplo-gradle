@@ -3,8 +3,28 @@ pipeline {
     environment {
         NEXUS_USER         = credentials('nexus-user')
         NEXUS_PASSWORD     = credentials('nexus-pass')
+        DISABLE_AUTH = 'true'
+        DB_ENGINE    = 'sqlite'
     }
     stages {
+        stage('Build') {
+            steps {
+                sh 'printenv'                
+            }
+        }
+
+        stage('Build2') {
+            steps {                
+                echo 'Pulling...' + env.BRANCH_NAME
+            }
+        }
+
+          stage('Build3') {
+            steps {                
+                echo 'Pulling... ' + env.GIT_BRANCH
+            }
+        }
+        
         stage("Pipeline"){
             steps {
                 script{
