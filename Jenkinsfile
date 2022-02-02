@@ -28,6 +28,14 @@ pipeline {
                     }
                 }
             }
+            post{
+                success{
+                    slackSend color: 'good', message: "[Erickson Bravo] [${JOB_NAME}] [${BUILD_TAG}] Ejecucion Exitosa", teamDomain: 'dipdevopsusac-tr94431', tokenCredentialId: 'token-slack'
+                }
+                failure{
+                    slackSend color: 'danger', message: "[Erickson Bravo] [${env.JOB_NAME}] [${BUILD_TAG}] Ejecucion fallida en stage [${env.TAREA}]", teamDomain: 'dipdevopsusac-tr94431', tokenCredentialId: 'token-slack'
+                }
+            }
         }
     }
 }
