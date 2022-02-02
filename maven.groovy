@@ -16,7 +16,7 @@ def call(){
   }
   stage("Paso 4: Sonar - Análisis Estático"){
       sh "echo 'Análisis Estático!'"
-      withSonarQubeEnv('sonarqube3') {
+      withSonarQubeEnv('sonarqube') {
           sh 'mvn clean verify sonar:sonar -Dsonar.projectKey=ejemplo-gradle -Dsonar.java.binaries=build'
       }
   }
@@ -25,13 +25,13 @@ def call(){
       sh "sleep 20 && curl -X GET 'http://localhost:8081/rest/mscovid/test?msg=testing'"
   }
   stage("Paso 6: Subir Nexus"){
-      nexusPublisher nexusInstanceId: 'nexus3',
+      nexusPublisher nexusInstanceId: 'nexus',
       nexusRepositoryId: 'devops-usach-nexus',
       packages: [
           [$class: 'MavenPackage',
               mavenAssetList: [
                   [classifier: '',
-                  extension: '.jar',
+                  extension: '',
                   filePath: 'build/DevOpsUsach2020-0.0.1.jar'
               ]
           ],
