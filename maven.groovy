@@ -5,6 +5,7 @@
 */
 def call(){
   stage("Paso 1: Compliar"){
+      env.STAGE = env.STAGE_NAME
     sh "mv1n clean compile -e"
   }
   stage("Paso 2: Testear"){
