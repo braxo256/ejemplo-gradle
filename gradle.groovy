@@ -10,6 +10,7 @@ def call(){
     stage("Paso 2: Sonar - Análisis Estático"){
         sh "echo 'Análisis Estático!'"
         withSonarQubeEnv('sonarqube') {
+            sh 'chmod +x gradlew'
             sh './gradlew sonarqube -Dsonar.projectKey=ejemplo-gradle -Dsonar.java.binaries=build'
         }
     }
@@ -41,6 +42,7 @@ def call(){
         sh ' curl -X GET -u $NEXUS_USER:$NEXUS_PASSWORD "http://nexus:8081/repository/devops-usach-nexus/com/devopsusach2020/DevOpsUsach2020/0.0.1/DevOpsUsach2020-0.0.1.jar" -O'
     }
     stage("Paso 6: Levantar Artefacto Jar"){
+          sh 'chmod +x DevOpsUsach2020-0.0.1.jar'
         sh 'nohup bash java -jar DevOpsUsach2020-0.0.1.jar & >/dev/null'
     }
     stage("Paso 7: Testear Artefacto - Dormir(Esperar 20sg) "){
